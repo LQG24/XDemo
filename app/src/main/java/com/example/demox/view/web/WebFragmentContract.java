@@ -2,6 +2,7 @@ package com.example.demox.view.web;
 
 import com.example.demox.data.bean.PretendBItem;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,12 +24,21 @@ public interface WebFragmentContract {
         void refreshListview(List<PretendBItem> itemList);
     }
 
+    interface Model{
+
+        /**
+         * 从网络获取数据
+         * @return
+         */
+        List<PretendBItem> getDataFromWeb(String keyword) throws IOException;
+    }
+
     interface Presenter{
 
         /**
          * 展示从网络上获取的图片
          */
-        void showImageFromWeb();
+        void showDataFromWeb();
     }
 
 }
