@@ -1,8 +1,10 @@
 package com.example.demox.base;
 
 import android.app.Application;
+import android.content.Context;
 
-import com.grosner.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.config.FlowManager;
+
 
 /**
  * Created by chan on 2016/5/18.
@@ -18,5 +20,13 @@ public class BaseApplication extends Application {
                 .build();
 
         FlowManager.init(this);//初始化数据库框架
+    }
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
+    }
+
+    public static BaseApplication get(Context context){
+        return (BaseApplication)context.getApplicationContext();
     }
 }

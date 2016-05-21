@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DemoX</string>
+
+
+    <string name="remote_image">网络图片</string>
+    <string name="local_image">本地图片</string>
+    <string name="test">test</string>
+    <string name="search">搜索</string>
 </resources>

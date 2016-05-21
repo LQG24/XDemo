@@ -1,5 +1,7 @@
-package com.example.demox.view.web;
+package com.example.demox.view.remote;
 
+import com.example.demox.base.BasePresenter;
+import com.example.demox.base.BaseView;
 import com.example.demox.data.bean.PretendBItem;
 
 import java.io.IOException;
@@ -8,9 +10,9 @@ import java.util.List;
 /**
  * Created by chan on 2016/5/18.
  */
-public interface WebFragmentContract {
+public interface RemoteImageContract {
 
-    interface View{
+    interface View extends BaseView<Presenter>{
 
         /**
          * 获取用户的输入值：搜索的关键字
@@ -21,7 +23,9 @@ public interface WebFragmentContract {
         /**
          * 刷新列表数据
          */
-        void refreshListview(List<PretendBItem> itemList);
+        void refreshListView(List<PretendBItem> itemList);
+
+        void showTip(String tip);
     }
 
     interface Model{
@@ -33,12 +37,12 @@ public interface WebFragmentContract {
         List<PretendBItem> getDataFromWeb(String keyword) throws IOException;
     }
 
-    interface Presenter{
+    interface Presenter extends BasePresenter{
 
         /**
          * 展示从网络上获取的图片
          */
-        void showDataFromWeb();
+        void requestAndShowImage();
     }
 
 }

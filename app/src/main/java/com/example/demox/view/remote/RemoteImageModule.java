@@ -1,13 +1,11 @@
-package com.example.demox.view.web;
+package com.example.demox.view.remote;
 
-import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.example.demox.data.api.PretendBApi;
+import com.example.demox.view.adapter.PretendBAdapter;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import dagger.Module;
@@ -19,15 +17,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by chan on 2016/5/18.
  */
 @Module
-public class WebFragmentModule {
+public class RemoteImageModule {
     private static final String PROPERTIES_FILE_NAME = "url.properties";
     private static final String WEB_URL = "web_url";
     Context mContext;
-    WebFragmentContract.View mView;
-    WebFragmentContract.Model mModel;
-    WebFragmentContract.Presenter mPresenter;
+    RemoteImageContract.View mView;
 
-    public WebFragmentModule(Context context, WebFragmentContract.View view) {
+    public RemoteImageModule(Context context, RemoteImageContract.View view) {
         this.mContext = context;
         this.mView = view;
     }
@@ -49,11 +45,32 @@ public class WebFragmentModule {
                 .create(PretendBApi.class);
     }
 
+    /**
+     * 提供视图层
+     * @return
+     */
     @Provides
-    public WebFragmentContract.View provideView() {
+    public RemoteImageContract.View provideView() {
         return mView;
     }
 
+    /**
+     * 提供model层
+     * @return
+     */
+    @Provides
+    public RemoteImageContract.Model provideModel(PretendBApi api) {
+        return new RemoteImageModel(api);
+    }
 
+
+    /**
+     * 提供一个适配器
+     * @return
+     */
+    @Provides
+    public PretendBAdapter provideAdapter() {
+        return new PretendBAdapter();
+    }
 
 }

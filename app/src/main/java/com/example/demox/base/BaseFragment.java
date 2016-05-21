@@ -13,9 +13,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setUpActivityComponent();
+        setUpActivityComponent(BaseApplication.get(getActivity()).getAppComponent());
     }
 
-    //加载activity需要的依赖模块
-    protected abstract void setUpActivityComponent();
+    //加载fragment中需要的依赖模块
+    protected abstract void setUpActivityComponent(AppComponent appComponent);
 }
